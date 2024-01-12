@@ -182,7 +182,7 @@ class Model:
         classes: List[str],
         box_threshold: float,
         text_threshold: float
-    ) -> sv.Detections:
+    ) -> Tuple[sv.Detections, List[str]]:
         """
         import cv2
 
@@ -219,7 +219,7 @@ class Model:
             logits=logits)
         class_id = Model.phrases2classes(phrases=phrases, classes=classes)
         detections.class_id = class_id
-        return detections
+        return detections, phrases
 
     @staticmethod
     def preprocess_image(image_bgr: np.ndarray) -> torch.Tensor:
